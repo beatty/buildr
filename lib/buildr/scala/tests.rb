@@ -127,7 +127,7 @@ module Buildr::Scala
           File.open(reportFile, "r") do |input|
             while (line = input.gets) do
               failed = (line =~ /(TESTS? FAILED -)|(RUN STOPPED)|(RUN ABORTED)/) unless failed
-              completed |= (line =~ /All tests passed\./)
+              completed |= (line =~ /Run completed/)
               break if (failed)
             end
           end
