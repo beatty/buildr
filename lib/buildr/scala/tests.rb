@@ -52,7 +52,7 @@ module Buildr::Scala
   # * :java_args   -- Arguments passed as is to the JVM.
   class ScalaTest < Buildr::TestFramework::Java
 
-    VERSION = '0.9.5'
+    VERSION = '1.0'
 
     class << self
       def version
@@ -60,7 +60,7 @@ module Buildr::Scala
       end
       
       def dependencies
-        ["org.scala-tools.testing:scalatest:jar:#{version}"] + Check.dependencies + 
+        ["org.scalatest:scalatest:jar:#{version}"] + Check.dependencies + 
           JMock.dependencies + JUnit.dependencies
       end  
 
@@ -127,7 +127,7 @@ module Buildr::Scala
           File.open(reportFile, "r") do |input|
             while (line = input.gets) do
               failed = (line =~ /(TESTS? FAILED -)|(RUN STOPPED)|(RUN ABORTED)/) unless failed
-              completed |= (line =~ /Run completed\./)
+              completed |= (line =~ /All tests passed\./)
               break if (failed)
             end
           end
